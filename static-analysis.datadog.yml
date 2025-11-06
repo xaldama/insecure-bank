@@ -3,7 +3,3 @@ rulesets:
       ignore:
         - "**"
         - "**/**"
-  - continuous-static-analyzer
-      ignore:
-        - "**"
-        - "**/**"
