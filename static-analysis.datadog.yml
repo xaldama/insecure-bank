@@ -1,4 +1,4 @@
 rulesets:
   - java-best-practices
     ignore:
-      - "**"
+      - "*/**"
