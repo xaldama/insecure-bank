@@ -55,7 +55,7 @@ public class TransferController {
 		List<CashAccount> cashAccounts = cashaccountDao.findCashAccountsByUsername(principal.getName());
 
 		try (Tracer tracer = GlobalTracer.get();){
-			tracer.buildSpan("BackupLedger.persist").withTag("tag", "a");
+			tracer.buildSpan("findUsersByUsername").withTag("tag", "a");
 			Account account = accountDao.findUsersByUsername(principal.getName()).get(0);
 
 			Transfer newTransfer = new Transfer();
