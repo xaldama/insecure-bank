@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import datadog.trace.api.Trace;
+import io.opentracing.Tracer;
+import io.opentracing.util.GlobalTracer;
 import org.hdivsamples.bean.Account;
 import org.hdivsamples.bean.CashAccount;
 import org.hdivsamples.bean.OperationConfirm;
@@ -47,22 +50,25 @@ public class TransferController {
 	TransfersFacade transfersFacade;
 
 	@RequestMapping
+	@Trace
 	public String newTransferForm(final Model model, final Principal principal, final HttpServletResponse response) {
 		List<CashAccount> cashAccounts = cashaccountDao.findCashAccountsByUsername(principal.getName());
 
-		Account account = accountDao.findUsersByUsername(principal.getName()).get(0);
+		try (Tracer tracer = GlobalTracer.get();){
+			tracer.buildSpan("BackupLedger.persist").withTag("tag", "a");
+			Account account = accountDao.findUsersByUsername(principal.getName()).get(0);
 
-		Transfer newTransfer = new Transfer();
-		newTransfer.setFee(5.00);
+			Transfer newTransfer = new Transfer();
+			newTransfer.setFee(5.00);
 
-		if (!model.containsAttribute("transfer")) {
-			model.addAttribute("transfer", newTransfer);
+			if (!model.containsAttribute("transfer")) {
+				model.addAttribute("transfer", newTransfer);
+			}
+			model.addAttribute("cashAccounts", cashAccounts);
+			model.addAttribute("account", account);
+
+			response.addCookie(new Cookie("accountType", AccountType.PERSONAL));
 		}
-		model.addAttribute("cashAccounts", cashAccounts);
-		model.addAttribute("account", account);
-
-		response.addCookie(new Cookie("accountType", AccountType.PERSONAL));
-
 		return "newTransfer";
 	}
 
