@@ -23,6 +23,7 @@ Place Hdiv agent and license in the application root folder.
         $ docker run -p 8080:8080 -d --name insecure-bank-app insecure-bank
         $ docker logs insecure-bank-app
 
+
 Open the application in > http://localhost:8080/insecure-bank        
 
 ## Login credentials
