@@ -4,7 +4,7 @@
 
 1. Clone the repository:
 
-        $ git clone https://github.com/hdiv/insecure-bank.git
+        $ git clone https://github.com/xaldama/insecure-bank.git
         
 2. Run the application using an embedded Tomcat:
 
