@@ -1,5 +1,3 @@
 # static-analysis.datadog.yml
 rulesets:
-  - javascript-best-practices:
-    ignore: 
-      - '*/**'
+  - java-security

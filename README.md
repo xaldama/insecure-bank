@@ -4,7 +4,7 @@
 
 1. Clone the repository:
 
-        $ git clone https://github.com/hdiv/insecure-bank.git
+        $ git clone https://github.com/xaldama/insecure-bank.git
         
 2. Run the application using an embedded Tomcat:
 
@@ -22,6 +22,7 @@ Place Hdiv agent and license in the application root folder.
         $ docker build -t insecure-bank .
         $ docker run -p 8080:8080 -d --name insecure-bank-app insecure-bank
         $ docker logs insecure-bank-app
+
 
 Open the application in > http://localhost:8080/insecure-bank        
 
