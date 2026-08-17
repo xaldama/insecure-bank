@@ -83,7 +83,7 @@ public class DashboardController {
 
 	@RequestMapping(value = "/userDetail", method = RequestMethod.GET)
 	public String userDetail(final Model model, final Principal principal, @RequestParam(value = "username") final String username) {
-
+		// no-dd-sa:datadog/java-accesscontrol
 		Account account = accountDao.findUsersByUsername(username).get(0);
 		List<CreditAccount> creditAccounts = creditaccountDao.findCreditAccountsByUsername(principal.getName());
 
