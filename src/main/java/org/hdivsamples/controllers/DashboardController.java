@@ -303,7 +303,6 @@ public class DashboardController {
 			catch (IOException e) {
 			}
 		}
-
 		return total;
 	}
 }
