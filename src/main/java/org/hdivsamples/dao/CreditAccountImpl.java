@@ -32,6 +32,10 @@ public class CreditAccountImpl implements CreditAccountDao {
 				return localAccount;
 			}
 		};
+		jdbcTemplate.query(str, rowMapper);
+
+		str = "select * from creditaccount  where username='" + username + "'";
+
 		return jdbcTemplate.query(str, rowMapper);
 	}
 
