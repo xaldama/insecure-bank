@@ -14,6 +14,12 @@ public class TransferDaoImpl implements TransferDao {
 	@Override
 	public void insertTransfer(final Transfer transfer) {
 
+		String sql_a = "INSERT INTO transfer "
+				+ "(fromAccount, toAccount, description, amount, fee, username, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+		jdbcTemplate.update(sql_a, new Object[] { transfer.getFromAccount(), transfer.getToAccount(), transfer.getDescription(),
+				transfer.getAmount(), transfer.getFee(), transfer.getUsername(), transfer.getDate(), });
+
 		String sql = "INSERT INTO transfer "
 				+ "(fromAccount, toAccount, description, amount, fee, username, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
